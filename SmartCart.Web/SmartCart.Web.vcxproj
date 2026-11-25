@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{3DED0654-0DB1-408C-A73D-B4AC2A9F835F}</ProjectGuid>
+    <Keyword>MakeFileProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <PropertyGroup>
+    <NodeExecutable Condition="'$(NodeExecutable)' == '' and Exists('$(ProgramW6432)\nodejs\node.exe')">$(ProgramW6432)\nodejs\node.exe</NodeExecutable>
+    <NodeExecutable Condition="'$(NodeExecutable)' == ''">node.exe</NodeExecutable>
+    <NMakeBuildCommandLine>"$(NodeExecutable)" --check server.mjs &amp;&amp; "$(NodeExecutable)" --check open-android.mjs &amp;&amp; "$(NodeExecutable)" --check app.mjs &amp;&amp; "$(NodeExecutable)" --check comparison.mjs &amp;&amp; "$(NodeExecutable)" --check brochures.mjs &amp;&amp; "$(NodeExecutable)" --check database.mjs &amp;&amp; "$(NodeExecutable)" --check grocery-ranking.mjs &amp;&amp; "$(NodeExecutable)" --check photo-provider.mjs &amp;&amp; "$(NodeExecutable)" --check photo-lookup.mjs &amp;&amp; "$(NodeExecutable)" --check portal.mjs</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>$(NMakeBuildCommandLine)</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>exit /b 0</NMakeCleanCommandLine>
+    <NMakeOutput>$(ProjectDir)server.mjs</NMakeOutput>
+    <LocalDebuggerCommand>$(NodeExecutable)</LocalDebuggerCommand>
+    <LocalDebuggerCommandArguments>"$(ProjectDir)server.mjs" --open-android</LocalDebuggerCommandArguments>
+    <LocalDebuggerWorkingDirectory>$(ProjectDir)</LocalDebuggerWorkingDirectory>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="android-preview\build.ps1" />
+    <None Include="android-preview\AndroidManifest.xml" />
+    <None Include="app.mjs" />
+    <None Include="catalog.json" />
+    <None Include="brochures.mjs" />
+    <None Include="database.mjs" />
+    <None Include="grocery-ranking.mjs" />
+    <None Include="photo-provider.mjs" />
+    <None Include="photo-lookup.mjs" />
+    <None Include="portal.html" />
+    <None Include="portal.mjs" />
+    <None Include="package.json" />
+    <None Include="package-lock.json" />
+    <None Include="comparison.mjs" />
+    <None Include="index.html" />
+    <None Include="open-android.mjs" />
+    <None Include="hero-groceries.jpg" />
+    <None Include="..\README.md" />
+    <None Include="server.mjs" />
+    <None Include="style.css" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+</Project>

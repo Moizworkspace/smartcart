@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SmartCart · Shop and admin portal</title><link rel="stylesheet" href="/style.css"><script type="module" src="/portal.mjs"></script></head>
+<body><header class="site-header"><div class="wrap bar"><a class="brand" href="/"><span aria-hidden="true" class="brand-mark">S</span> SmartCart</a><a href="/">Back to search</a></div></header>
+<main class="wrap portal">
+<h1>Shop and admin portal</h1>
+<form id="access"><label>Access key <input type="password" name="key" required autocomplete="off"></label><button>Open portal</button></form>
+<p id="status" class="muted" role="status"></p>
+<div id="dashboard" hidden>
+<section id="manage" hidden aria-labelledby="manage-title">
+<h2 id="manage-title">Catalog and branches</h2>
+<form id="product-form">
+  <label>Edit product <select id="edit-product"><option value="">New product</option></select></label>
+  <label>Product name <input name="name" required></label>
+  <label>Arabic name <input name="arabic"></label>
+  <label>Brand <input name="brand"></label>
+  <label>Variant <input name="variant"></label>
+  <label>Pack size <input name="size" placeholder="1 L"></label>
+  <label>Base quantity <input name="quantity" type="number" min="0.001" step="any"></label>
+  <label>Unit <input name="unit" placeholder="L or kg"></label>
+  <label>Barcode <input name="barcode" inputmode="numeric" pattern="[0-9]{8,14}"></label>
+  <label>Image URL <input type="url" name="imageUrl"></label>
+  <button>Save product</button>
+</form>
+<form id="location-form">
+  <label>Edit branch <select id="edit-location"><option value="">New branch</option></select></label>
+  <label>Retailer <select name="storeId" required></select></label>
+  <label>Branch name <input name="name" required></label>
+  <label>Neighbourhood <input name="area" required></label>
+  <label>Latitude <input type="number" step="any" min="-90" max="90" name="lat" required></label>
+  <label>Longitude <input type="number" step="any" min="-180" max="180" name="lon" required></label>
+  <button>Save branch</button>
+</form>
+</section>
+<section aria-labelledby="submit-title">
+<h2 id="submit-title">Submit a price</h2>
+<form id="offer-form">
+  <label>Product <select name="productId" required></select></label>
+  <label>Retailer <select name="storeId" required></select></label>
+  <label>Branch <select name="locationId"></select></label>
+  <label>Price in SAR <input name="price" type="number" min="0.01" step="0.01" required></label>
+  <label>Starts <input type="date" name="start" required></label>
+  <label>Last day <input type="date" name="end" required></label>
+  <label>Evidence URL <input type="url" name="sourceUrl" required></label>
+  <label>Offer terms <input name="conditions"></label>
+  <button>Submit for verification</button>
+</form>
+</section>
+<section aria-labelledby="records-title"><h2 id="records-title">Price records</h2>
+<form id="lookup"><label>Find records <input name="query" type="search"></label><button class="secondary">Search records</button></form>
+<p id="record-count" class="muted"></p><div id="records" class="results"></div></section>
+</div></main></body></html>

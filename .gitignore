@@ -1,0 +1,16 @@
+node_modules/
+.smartcart/
+.vs/
+x64/
+*.user
+*.log
+*.apk
+*.aab
+*.idsig
+*.jks
+*.keystore
+.env
+.env.*
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal

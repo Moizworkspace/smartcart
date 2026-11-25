@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0912">
+  <title>SmartCart · Jeddah grocery deals</title>
+  <link rel="stylesheet" href="/style.css">
+  <script type="module" src="/app.mjs"></script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="/"><span class="brand-mark" aria-hidden="true">S</span> SmartCart</a>
+    <div class="header-actions"><span class="city">Jeddah, Saudi Arabia</span><button id="phone" type="button" class="secondary">Open on phone</button></div>
+  </div>
+</header>
+<main class="wrap">
+  <section class="search-panel" aria-labelledby="search-title">
+    <h1 id="search-title">Jeddah <span>grocery deals.</span></h1>
+    <p>Search current offers from Panda, Carrefour, Danube, Al Othaim and LuLu.</p>
+    <form id="search">
+      <label class="sr" for="query">Product name or barcode</label>
+      <div class="search-field">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></svg>
+        <input id="query" dir="auto" maxlength="100" placeholder="Search milk, chicken, or أرز" required>
+        <button type="submit">Search</button>
+      </div>
+    </form>
+    <div class="search-actions">
+      <button type="button" class="secondary" id="camera">Take photo</button>
+      <button type="button" class="secondary" id="upload">Upload photo</button>
+      <input id="photo" type="file" accept="image/*" hidden>
+      <span class="divider" aria-hidden="true"></span>
+      <div id="quick-search" class="quick-search" aria-label="Popular searches">
+        <button type="button" class="chip" data-query="milk">Milk</button>
+        <button type="button" class="chip" data-query="rice">Rice</button>
+        <button type="button" class="chip" data-query="fresh chicken">Chicken</button>
+        <button type="button" class="chip" data-query="tomato">Tomatoes</button>
+      </div>
+    </div>
+    <p id="photo-status" class="muted" role="status"></p>
+  </section>
+  <details class="controls">
+    <summary>Location and comparison settings</summary>
+    <div class="toolbar">
+      <label>Neighbourhood <select id="area"><option value="">All Jeddah</option><option>Al Rawdah</option><option>Al Salamah</option><option>Al Hamra</option><option>Al Safa</option><option>Al Zahra</option><option>Al Marwah</option></select></label>
+      <button id="location" class="secondary" type="button">Use my location</button>
+      <label id="radius-label" hidden>Radius <select id="radius"><option value="3">3 km</option><option value="5" selected>5 km</option><option value="10">10 km</option><option value="20">20 km</option></select></label>
+      <label class="demo"><input type="checkbox" id="demo"> Show demo prices</label>
+    </div>
+    <p id="geo-status" class="muted" role="status"></p>
+  </details>
+  <section id="candidates" hidden aria-label="Matching products"></section>
+  <section id="brochure-search" hidden aria-labelledby="brochure-heading">
+    <div class="result-head">
+      <h2 id="brochure-heading">Active deals</h2>
+      <label id="deal-order-label" hidden>Sort <select id="deal-order"><option value="quantity">Monthly shop · larger packs</option><option value="price">Lowest pack price</option><option value="expiry">Ending soon</option><option value="name">Product name</option></select></label>
+    </div>
+    <p class="muted" id="brochure-status" role="status"></p>
+    <div id="search-choices" class="retailer-filters" aria-label="Related searches"></div>
+    <div id="retailer-filters" class="retailer-filters" aria-label="Filter by retailer"></div>
+    <div id="brochure-results" class="deal-grid"></div>
+    <button id="show-more" type="button" class="secondary more" hidden>Show more deals</button>
+  </section>
+  <section id="catalog-comparison" aria-labelledby="title">
+    <div class="result-head">
+      <h2 id="title">Compare stores</h2>
+      <label>Sort <select id="sort"><option value="price">Pack price</option><option value="unit">Unit price</option><option value="distance">Distance</option></select></label>
+    </div>
+    <p class="muted" id="summary" role="status"></p>
+    <div id="results" class="results"></div>
+  </section>
+</main>
+<footer class="wrap"><span>SmartCart · Prices in SAR</span><a href="/portal">Shop and admin portal</a></footer>
+<dialog id="phone-dialog" aria-labelledby="phone-title">
+  <form method="dialog"><button class="secondary" aria-label="Close QR code">Close</button></form>
+  <h2 id="phone-title">Open SmartCart on your phone</h2>
+  <p id="phone-status" role="status"></p>
+  <img id="phone-qr" width="240" height="240" alt="QR code for the SmartCart phone URL" hidden>
+  <a id="phone-link" hidden></a>
+</dialog>
+<dialog id="photo-dialog" aria-labelledby="photo-title">
+  <div class="dialog-heading"><h2 id="photo-title">Confirm the product</h2><button id="photo-close" class="secondary" type="button">Cancel</button></div>
+  <img id="photo-preview" width="160" height="120" alt="Your product photo">
+  <p id="identify-status" class="muted" role="status"></p>
+  <div id="photo-suggestions" class="quick-search" aria-label="Suggested product names"></div>
+  <form id="confirm-photo">
+    <label for="photo-name">Product name</label>
+    <input id="photo-name" dir="auto" required maxlength="100" placeholder="Type or correct the name">
+    <div class="dialog-actions">
+      <button type="submit">Yes, find deals</button>
+      <button id="photo-clear" class="secondary" type="button">Not this product</button>
+    </div>
+  </form>
+  <button id="google-photo" type="button" class="secondary" hidden>Send photo to Google Vision</button>
+</dialog>
+</body>
+</html>
